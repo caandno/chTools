@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-__title__ = "Set location by coordinates"
+__title__ = "Set coordinates"
 __doc__ =  """Move the selected object to the specified coordinates"""
 
 # -----------------Imports--------------------
 from Autodesk.Revit.DB import *
+import sys
 
 __author__ = "Casper Helmark"
 __helpurl__ = "https://pyrevitlabs.notion.site/pyrevitlabs/pyRevit-bd907d6292ed4ce997c46e84b6ef67a0"
@@ -27,8 +28,11 @@ selection_ids = uidoc.Selection.GetElementIds()
 
 if len(selection_ids) > 1:
     forms.alert('You must only select one element', exitscript=True)
-       
 
+if len(selection_ids) == 0 :
+    forms.alert('You must select one element to continue', exitscript=True)
+   
+       
 for selection_id in selection_ids:
     # print(selection_id)
 
@@ -41,13 +45,20 @@ for selection_id in selection_ids:
 control = True
 while control == True:
 
-   userInput = forms.ask_for_string(default = 'X, Y, Z', prompt = "Coordinates in mm, where the object should be moved", )
-   if  (',') not in userInput or 'X, Y, Z' in userInput:
-       forms.alert('You must input coordinates in the format [X, Y, Z] in to use this tool. Try Again', exitscript=False)
-       control = True
-   else:
-       control = False
+    userInput = forms.ask_for_string(default = 'X, Y, Z', prompt = "Coordinates in mm, where the object should be moved")
 
+    try: 
+        if  (',') not in userInput or 'X, Y, Z' in userInput:
+            forms.alert('You must input coordinates in the format [X, Y, Z] to use this tool. Try Again', exitscript=False)
+            control = True
+        else:
+            control = False
+    except:
+        sys.exit()
+
+# Inserting Z=0 if Z's not given
+if len(userInput.split(',')) < 3:
+    userInput += ',0'
 # Splits coordinates and converting to internals
 
 Xcor, Ycor, Zcor = userInput.split(',')
