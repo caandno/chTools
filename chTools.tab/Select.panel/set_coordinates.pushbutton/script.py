@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__title__ = "Move by coordinates"
+__title__ = "Set coordinates"
 __doc__ =  """Move the selected object to the specified coordinates"""
 
 # -----------------Imports--------------------
@@ -70,11 +70,23 @@ Zcor = convert_to_internal_mm(float(Zcor))
 
 # -------------------Transaction----------------------
 # Sets coordinate of selection
+# While testing pile was raised 3000mm with z=0. Implemented below code to check before and after the transaction. Then it stopped. Leaving the
+# code for now.
+
+# height_above_param= element.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM)
+# parma= height_above_param.AsValueString()
+# print(parma)
+
 t= Transaction(doc,__title__)
 t.Start()
 
 newLocation = XYZ(Xcor, Ycor, Zcor)
-element.Location.Move(newLocation)
+translation = newLocation - locPoint
+element.Location.Move(translation)
 
 t.Commit()
+# height_above_param= element.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM)
+# parma= height_above_param.AsValueString()
+# print(parma)
+# input("enter to end")
 # ----------------End------------------.
