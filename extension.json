@@ -2,7 +2,7 @@
             "builtin": "False",
             "type": "extension",
             "rocket_mode_compatible": "True",
-            "name": "chTools",
+            "name": "chToolsDev",
             "description": "pyRevit extension for with additional features",
             "author": "Casper Helmark Andersen",
             "author_profile": "https://github.com/caandno",
