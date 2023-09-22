@@ -30,10 +30,12 @@ if len(selection_ids) > 1:
        
 
 for selection_id in selection_ids:
-    # print(selection_id)
 
     # Get coordinates of selection
     element = uidoc.Document.GetElement(selection_id)
+    if element.Location.Point == None:
+        forms.alert('You must only select a point based family fx. Columns, Coordinate markers etc.', exitscript=True)
+
     locPoint = element.Location.Point
     # print(type(locPoint))
 

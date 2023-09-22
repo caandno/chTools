@@ -22,7 +22,7 @@ selection_ids = uidoc.Selection.GetElementIds()
 def copy_type_name_to_comments(elements):
 
     for element in elements:
-        comment = element.get_Parameter(BuiltInParameter.ALL_MODEL_DESCRIPTION)
+        comment = element.get_Parameter(BuiltInParameter.ALL_MODEL_DESCRIPTION.AsValueString())
         print(comment)
         # element_type = element.Name
         # element_name = element_type[(element_type.find(':'))+1:]
