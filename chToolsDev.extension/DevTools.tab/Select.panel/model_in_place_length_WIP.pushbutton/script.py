@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-__title__ = "model-in place length"
-__doc__ =  """Calculate the lenght of a model in place object and writes i to a length parameter"""
+__title__ = "model_in_place_length_WIP"
+__doc__ =  """Calculate the length of a model in place family and writes it to a length parameter"""
 
 # -----------------Imports--------------------
 from Autodesk.Revit.DB import *
