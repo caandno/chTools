@@ -24,9 +24,9 @@ def copy_type_name_to_comments(elements):
     for element in elements:
         comment = element.get_Parameter(BuiltInParameter.ALL_MODEL_DESCRIPTION.AsValueString())
         print(comment)
-        # element_type = element.Name
-        # element_name = element_type[(element_type.find(':'))+1:]
-        # comment.Set(element_name)
+        element_type = element.Name
+        element_name = element_type[(element_type.find(':'))+1:]
+        comment.Set(element_name)
 
     print('familie typen {} har fået satt comments til {}'.format(element_type,element_name))
 
@@ -37,12 +37,12 @@ beams = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralF
 
 # -------------------Transaction----------------------
 
-# t= Transaction(doc,__title__)
-# t.Start()
+t= Transaction(doc,__title__)
+t.Start()
 
 
-copy_type_name_to_comments(selection_ids)
-# copy_type_name_to_comments(columns)
+# copy_type_name_to_comments(selection_ids)
+copy_type_name_to_comments(columns)
 # copy_type_name_to_comments(beams)
 
-# t.Commit()
+t.Commit()
