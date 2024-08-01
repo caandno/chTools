@@ -1,0 +1,3 @@
+layout:
+  - move_by_coordinates
+  - set_coordinates
